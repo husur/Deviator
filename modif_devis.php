@@ -42,28 +42,28 @@ if (isset($_POST['submit'])) {
                                     $insertentreprise = $bdd->prepare("UPDATE image_devis SET nom_entreprise = ?, tel_entreprise = ?, adresse_entreprise = ?, complement_entreprise = ?, cp_entreprise = ?, ville_entreprise = ?, pays_entreprise = ?, mail_entreprise = ?, siret_entreprise = ? WHERE id = 1");
                                     $insertentreprise->execute(array($nom, $tel, $adresse, $complement, $cp, $ville, $pays, $mail, $siret));
                                 }else{
-                                    echo "Tous les champs doivent être copmplétés";
+                                    echo "Tous les champs doivent être complétés";
                                 }
                             }else{
-                                echo "Tous les champs doivent être copmplétés";
+                                echo "Tous les champs doivent être complétés";
                             }
                         }else{
-                            echo "Tous les champs doivent être copmplétés";
+                            echo "Tous les champs doivent être complétés";
                         }
                     }else{
-                        echo "Tous les champs doivent être copmplétés";
+                        echo "Tous les champs doivent être complétés";
                     }
                 }else{
-                    echo "Tous les champs doivent être copmplétés";
+                    echo "Tous les champs doivent être complétés";
                 }
             }else{
-                echo "Tous les champs doivent être copmplétés";
+                echo "Tous les champs doivent être complétés";
             }
         }else{
-            echo "Tous les champs doivent être copmplétés";
+            echo "Tous les champs doivent être complétés";
         }
     }else{
-        echo "Tous les champs doivent être copmplétés";
+        echo "Tous les champs doivent être complétés";
     }
 }
 

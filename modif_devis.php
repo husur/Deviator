@@ -32,6 +32,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style_navbar.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style_modif_devis.css">
     <title>Modification des devis</title>
 </head>
@@ -60,14 +61,41 @@ if (isset($_POST['submit'])) {
 
 <main>
 
-    <div class="container">
+    <div class="form-pdf">
         <form action="" method="POST" enctype="multipart/form-data">
-            <label for="nom">Nom de l'entreprise</label>
-            <input type="text" name="nom" id="nom" placeholder="Nom de l'entreprise">
-            <label for="">Importez votre logo</label>
+            <label for="nom">Nom de l'entreprise <br>
+                <input type="text" name="nom_entreprise" id="nom_entreprise" placeholder="Nom de l'entreprise">
+            </label>
+            <label for="tel_entreprise" class="label-gauche">Numéro de téléphone <br>
+                <input type="text" name="tel_entreprise" id="tel_entreprise" placeholder="Numéro de téléphone">
+            </label>
+            <label for="adresse_entreprise">Adresse <br>
+                <input type="text" name="adresse_entreprise" id="adresse_entreprise" placeholder="Adresse">
+            </label>
+            <label for="complement_entreprise" class="label-gauche">Complément <br>
+                <input type="text" name="complement_entreprise" id="complement_entreprise" placeholder="Complément">
+            </label>
+            <label for="cp_entreprise">Code Postal <br>
+                <input type="text" name="cp_entreprise" id="cp_entreprise" placeholder="Code Postal">
+            </label>
+            <label for="ville_entreprise" class="label-gauche">Ville <br>
+                <input type="text" name="ville_entreprise" id="ville_entreprise" placeholder="Ville">
+            </label>
+            <label for="pays_entreprise">Pays <br>
+                <input type="text" name="pays_entreprise" id="pays_entreprise" placeholder="Pays">
+            </label>
+            <label for="siret_entreprise" class="label-gauche">SIRET <br>
+                <input type="text" name="siret_entreprise" id="siret_entreprise" placeholder="SIRET">
+            </label>
+            <label for="">Importez votre logo <br>
             <input type="file" name="logo" id="logo">
-            <input type="submit" name="submit" id="submit" value="Mettre à jour le profil">
+            </label>
+            <label for="submit" class="label-gauche"> <br>
+                <input type="submit" name="submit" id="submit" value="Mettre à jour le profil">
+            </label>
         </form>
+
+        <button name="devis_vierge" id="devis_vierge">Visualiser le devis vierge</button>
     </div>
 
 </main>

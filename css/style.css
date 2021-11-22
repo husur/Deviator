@@ -62,6 +62,13 @@ input[type="submit"]{
     transition: .5s;
 }
 
+input[type="file"]{
+    color: #fff;
+    height: 39px;
+    cursor: pointer;
+    transition: .5s;
+}
+
 input[type="submit"]:hover{
     background-color: #fff;
     color: purple;

@@ -94,7 +94,7 @@
                                         $pays = htmlspecialchars($_POST['pays']);
                                         if($_POST['tel'] != ""){
                                             $tel = htmlspecialchars($_POST['tel']);
-                                            header("Location: creation_pdf.php?nom=$nom&prenom=$prenom&mail=$mail&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel");
+                                            header("Location: creation_pdf_devis_vierge.php?nom=$nom&prenom=$prenom&mail=$mail&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel&from=0");
                                         }else{
                                             echo "Tous les champs doivent être copmplétés";
                                         }

@@ -78,22 +78,22 @@
 
         if(isset($_POST['submit'])){
             if($_POST['nom'] != ""){
-                $nom = $_POST['nom'];
+                $nom = htmlspecialchars($_POST['nom']);
                 if($_POST['prenom'] != ""){
-                    $prenom = $_POST['prenom'];
+                    $prenom = htmlspecialchars($_POST['prenom']);
                     if($_POST['mail'] != ""){
-                        $mail = $_POST['mail'];
+                        $mail = htmlspecialchars($_POST['mail']);
                         if($_POST['adresse'] != ""){
-                            $adresse = $_POST['adresse'];
-                            $complement = $_POST['complement'];
+                            $adresse = htmlspecialchars($_POST['adresse']);
+                            $complement = htmlspecialchars($_POST['complement']);
                             if($_POST['cp'] != ""){
-                                $cp = $_POST['cp'];
+                                $cp = htmlspecialchars($_POST['cp']);
                                 if($_POST['ville'] != ""){
-                                    $ville = $_POST['ville'];
+                                    $ville = htmlspecialchars($_POST['ville']);
                                     if($_POST['pays'] != ""){
-                                        $pays = $_POST['pays'];
+                                        $pays = htmlspecialchars($_POST['pays']);
                                         if($_POST['tel'] != ""){
-                                            $tel = $_POST['tel'];
+                                            $tel = htmlspecialchars($_POST['tel']);
                                             header("Location: creation_pdf.php?nom=$nom&prenom=$prenom&mail=$mail&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel");
                                         }else{
                                             echo "Tous les champs doivent être copmplétés";

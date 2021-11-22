@@ -3,16 +3,16 @@
 include "database.php";
 
 if (isset($_POST['submit'])) {
-	$nom = htmlspecialchars($_POST['nom']);
+	$nom = htmlspecialchars($_POST['nom_entreprise']);
 	$nom_fichier = $nom;
 	$fichier = $_FILES['logo']['tmp_name'];
 	$dossierimg = "../deviator/img/logo/";
-	$nom_upload = $dossierimg.$nom_fichier.".png";
+	$nom_upload = $dossierimg.$nom_fichier.".jpg";
 
 	if ($nom != "") {
 
 		if(move_uploaded_file($fichier, $nom_upload)){
-			$insertimg = $bdd->prepare("INSERT INTO image_devis(nom_fichier) VALUES(?)");
+			$insertimg = $bdd->prepare("UPDATE image_devis SET nom_fichier = ? WHERE id = 1");
 			$insertimg->execute(array($nom_fichier));
 		}else{
 			echo "Une erreur est survenue";
@@ -21,6 +21,48 @@ if (isset($_POST['submit'])) {
 	}else{
 		echo "Tous les champs doivent être complétés";
 	}
+
+    if($_POST['nom_entreprise'] != ""){
+        $nom = htmlspecialchars($_POST['nom_entreprise']);
+        if($_POST['tel_entreprise'] != ""){
+            $tel = htmlspecialchars($_POST['tel_entreprise']);
+            if($_POST['mail_entreprise'] != ""){
+                $mail = htmlspecialchars($_POST['mail_entreprise']);
+                if($_POST['adresse_entreprise'] != ""){
+                    $adresse = htmlspecialchars($_POST['adresse_entreprise']);
+                    $complement = htmlspecialchars($_POST['complement_entreprise']);
+                    if($_POST['cp_entreprise'] != ""){
+                        $cp = htmlspecialchars($_POST['cp_entreprise']);
+                        if($_POST['ville_entreprise'] != ""){
+                            $ville = htmlspecialchars($_POST['ville_entreprise']);
+                            if($_POST['pays_entreprise'] != ""){
+                                $pays = htmlspecialchars($_POST['pays_entreprise']);
+                                if($_POST['siret_entreprise'] != ""){
+                                    $siret = htmlspecialchars($_POST['siret_entreprise']);
+                                }else{
+                                    echo "Tous les champs doivent être copmplétés";
+                                }
+                            }else{
+                                echo "Tous les champs doivent être copmplétés";
+                            }
+                        }else{
+                            echo "Tous les champs doivent être copmplétés";
+                        }
+                    }else{
+                        echo "Tous les champs doivent être copmplétés";
+                    }
+                }else{
+                    echo "Tous les champs doivent être copmplétés";
+                }
+            }else{
+                echo "Tous les champs doivent être copmplétés";
+            }
+        }else{
+            echo "Tous les champs doivent être copmplétés";
+        }
+    }else{
+        echo "Tous les champs doivent être copmplétés";
+    }
 }
 
 ?>
@@ -84,18 +126,21 @@ if (isset($_POST['submit'])) {
             <label for="pays_entreprise">Pays <br>
                 <input type="text" name="pays_entreprise" id="pays_entreprise" placeholder="Pays">
             </label>
-            <label for="siret_entreprise" class="label-gauche">SIRET <br>
+            <label for="mail_entreprise" class="label-gauche">Adresse Mail <br>
+                <input type="text" name="mail_entreprise" id="mail_entreprise" placeholder="SIRET">
+            </label>
+            <label for="siret_entreprise">SIRET <br>
                 <input type="text" name="siret_entreprise" id="siret_entreprise" placeholder="SIRET">
             </label>
-            <label for="">Importez votre logo <br>
+            <label for="" class="label-gauche">Importez votre logo <br>
             <input type="file" name="logo" id="logo">
             </label>
-            <label for="submit" class="label-gauche"> <br>
+            <label for="submit"> <br>
                 <input type="submit" name="submit" id="submit" value="Mettre à jour le profil">
             </label>
         </form>
 
-        <button name="devis_vierge" id="devis_vierge">Visualiser le devis vierge</button>
+        <a href="creation_pdf_devis_vierge.php?nom=<?=$nom?>&tel=<?=$tel?>&mail=<?=$mail?>&adresse=<?=$adresse?>&complement=<?=$complement?>&cp=<?=$cp?>&ville=<?=$ville?>&pays=<?=$pays?>&siret=<?=$siret?>"><button name="devis_vierge" id="devis_vierge">Télécharger le devis vierge</button></a>
     </div>
 
 </main>

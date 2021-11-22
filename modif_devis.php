@@ -67,6 +67,56 @@ if (isset($_POST['submit'])) {
     }
 }
 
+
+$pdf = $bdd->query('SELECT * FROM `image_devis` WHERE id = 1');
+$p = $pdf->fetch();
+
+$nom_entreprise = $p['nom_entreprise'];
+$tel_entreprise = $p['tel_entreprise'];
+$adresse_entreprise = $p['adresse_entreprise'];
+$complement_entreprise = $p['complement_entreprise'];
+$cp_entreprise = $p['cp_entreprise'];
+$ville_entreprise = $p['ville_entreprise'];
+$pays_entreprise = $p['pays_entreprise'];
+$mail_entreprise = $p['mail_entreprise'];
+$siret_entreprise = $p['siret_entreprise'];
+
+if($nom == ""){
+    $nom = $nom_entreprise;
+}
+
+if($tel == ""){
+    $tel = $tel_entreprise;
+}
+
+if($adresse == ""){
+    $adresse = $adresse_entreprise;
+}
+
+if($complement == ""){
+    $complement = $complement_entreprise;
+}
+
+if($cp == ""){
+    $cp = $cp_entreprise;
+}
+
+if($ville == ""){
+    $ville = $ville_entreprise;
+}
+
+if($pays == ""){
+    $pays = $pays_entreprise;
+}
+
+if($mail == ""){
+    $mail = $mail_entreprise;
+}
+
+if($siret == ""){
+    $siret = $siret_entreprise;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -108,31 +158,31 @@ if (isset($_POST['submit'])) {
     <div class="form-pdf">
         <form action="" method="POST" enctype="multipart/form-data">
             <label for="nom">Nom de l'entreprise <br>
-                <input type="text" name="nom_entreprise" id="nom_entreprise" placeholder="Nom de l'entreprise">
+                <input type="text" name="nom_entreprise" id="nom_entreprise" placeholder="Nom de l'entreprise" value="<?=$nom_entreprise?>">
             </label>
             <label for="tel_entreprise" class="label-gauche">Numéro de téléphone <br>
-                <input type="text" name="tel_entreprise" id="tel_entreprise" placeholder="Numéro de téléphone">
+                <input type="text" name="tel_entreprise" id="tel_entreprise" placeholder="Numéro de téléphone" value="<?=$tel_entreprise?>">
             </label>
             <label for="adresse_entreprise">Adresse <br>
-                <input type="text" name="adresse_entreprise" id="adresse_entreprise" placeholder="Adresse">
+                <input type="text" name="adresse_entreprise" id="adresse_entreprise" placeholder="Adresse" value="<?=$adresse_entreprise?>">
             </label>
             <label for="complement_entreprise" class="label-gauche">Complément <br>
-                <input type="text" name="complement_entreprise" id="complement_entreprise" placeholder="Complément">
+                <input type="text" name="complement_entreprise" id="complement_entreprise" placeholder="Complément" value="<?=$complement_entreprise?>">
             </label>
             <label for="cp_entreprise">Code Postal <br>
-                <input type="text" name="cp_entreprise" id="cp_entreprise" placeholder="Code Postal">
+                <input type="text" name="cp_entreprise" id="cp_entreprise" placeholder="Code Postal" value="<?=$cp_entreprise?>">
             </label>
             <label for="ville_entreprise" class="label-gauche">Ville <br>
-                <input type="text" name="ville_entreprise" id="ville_entreprise" placeholder="Ville">
+                <input type="text" name="ville_entreprise" id="ville_entreprise" placeholder="Ville" value="<?=$ville_entreprise?>">
             </label>
             <label for="pays_entreprise">Pays <br>
-                <input type="text" name="pays_entreprise" id="pays_entreprise" placeholder="Pays">
+                <input type="text" name="pays_entreprise" id="pays_entreprise" placeholder="Pays" value="<?=$pays_entreprise?>">
             </label>
             <label for="mail_entreprise" class="label-gauche">Adresse Mail <br>
-                <input type="text" name="mail_entreprise" id="mail_entreprise" placeholder="Adresse Mail">
+                <input type="text" name="mail_entreprise" id="mail_entreprise" placeholder="Adresse Mail" value="<?=$mail_entreprise?>">
             </label>
             <label for="siret_entreprise">SIRET <br>
-                <input type="text" name="siret_entreprise" id="siret_entreprise" placeholder="SIRET">
+                <input type="text" name="siret_entreprise" id="siret_entreprise" placeholder="SIRET" value="<?=$siret_entreprise?>">
             </label>
             <label for="" class="label-gauche">Importez votre logo <br>
             <input type="file" name="logo" id="logo">

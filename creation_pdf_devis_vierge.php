@@ -39,14 +39,14 @@ for ($j=1;$j<=$pagecount;$j++)
    $pdf->addPage();
    $pdf->useTemplate($tplidx, 0, 0, 0, 0, true);
    $pdf->SetAutoPageBreak(TRUE, 0);
-   if ($j==1){
+   if ($j==1){  
+    $pdf->Image($chemin_logo,20,20,40,40);
 
     $pdf->SetFont('Arial');
     $pdf->SetFontSize(11);
-                           
-    $pdf->Image($chemin_logo,100,100,30,30);
-    $pdf->SetXY(27,94);
-    $pdf->MultiCell(50,5,utf8_decode($nom),0,'L','L',0);
+
+    $pdf->SetXY(20,80);
+    $pdf->MultiCell(80,5,utf8_decode($nom),0,'L','L',0);
    
     }           
                           

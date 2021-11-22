@@ -27,3 +27,20 @@ footer{
 footer h3{
     font-weight: 300;
 }
+
+.form-pdf a button{
+    background-color: purple;
+    padding: 10px;
+    width: auto;
+    color: #fff;
+    border: 1px solid purple;
+    transition: .3s;
+    border-radius: 10px;
+}
+
+.form-pdf a button:hover{
+    background-color: #fff;
+    color: purple;
+    border: 1px solid purple;
+    transform: scale(1.05);
+}

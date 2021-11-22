@@ -76,6 +76,8 @@ include "trad_date.php";
 
 $dateauj = $jour." ".$explode_today[2]." ".$mois." ".$explode_today[3];
 
+define("Eur", "€");
+
 for ($j=1;$j<=$pagecount;$j++){
     $tplidx = $pdf->importPage($j);
     $pdf->addPage();
@@ -215,6 +217,32 @@ for ($j=1;$j<=$pagecount;$j++){
 
             $pdf->SetXY(10,130);
             $pdf->MultiCell(90,5,utf8_decode("Le ".$dateauj),0,'L','L',0);
+
+            // Création du tableau
+            $pdf->SetXY(10,140);
+            $pdf->MultiCell(70,5,utf8_decode("Désignation"),1,'C',0);
+            $pdf->SetXY(10,145);
+            $pdf->MultiCell(70,10,utf8_decode("Objet 1"),1,'C',0);
+
+            $pdf->SetXY(80,140);
+            $pdf->MultiCell(30,5,utf8_decode("Quantité"),1,'C',0);
+            $pdf->SetXY(80,145);
+            $pdf->MultiCell(30,10,utf8_decode("2"),1,'C',0);
+
+            $pdf->SetXY(110,140);
+            $pdf->MultiCell(30,5,utf8_decode("PU Vente"),1,'C',0);
+            $pdf->SetXY(110,145);
+            $pdf->MultiCell(30,10,utf8_decode("110"),1,'C',0);
+
+            $pdf->SetXY(140,140);
+            $pdf->MultiCell(20,5,utf8_decode("TVA"),1,'C',0);
+            $pdf->SetXY(140,145);
+            $pdf->MultiCell(20,10,utf8_decode("20%"),1,'C',0);
+
+            $pdf->SetXY(160,140);
+            $pdf->MultiCell(40,5,utf8_decode("Montant HT"),1,'C',0);
+            $pdf->SetXY(160,145);
+            $pdf->MultiCell(40,10,utf8_decode("110"),1,'C',0);
         }
     }                       
 }

@@ -138,8 +138,8 @@ if($siret == ""){
     <div id="ligne-header"></div>
     <div class="rightSide">
         <div class="btn menuToggle">
-            <ion-icon name="menu-outline"></ion-icon>
-            <ion-icon name="close-outline"></ion-icon>
+            <ion-icon name="menu-outline" onclick="disableScroll()"></ion-icon>
+            <ion-icon name="close-outline" onclick="enableScroll()"></ion-icon>
         </div>
     </div>
 

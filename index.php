@@ -17,8 +17,8 @@
         <div id="ligne-header"></div>
         <div class="rightSide">
             <div class="btn menuToggle">
-                <ion-icon name="menu-outline"></ion-icon>
-                <ion-icon name="close-outline"></ion-icon>
+                <ion-icon name="menu-outline" onclick="disableScroll()"></ion-icon>
+                <ion-icon name="close-outline" onclick="enableScroll()"></ion-icon>
             </div>
         </div>
 
@@ -35,6 +35,8 @@
 
         <div class="form-pdf">
             <form action="" method="POST">
+                <h4>Client</h4>
+                <br>
                 <label for="nom">Nom <br>
                     <input type="text" id="nom" name="nom" placeholder="Nom">
                 </label>
@@ -62,9 +64,25 @@
                 <label for="tel">Numéro de téléphone <br>
                     <input type="number" id="tel" name="tel" placeholder="Numéro de Téléphone">
                 </label>
+                <label for="tel" class="label-gauche input-hidden"> Test<br>
+                    <input type="number" id="designation_produit" name="designation_produit" placeholder="Désignation du produit" class="input-hidden">
+                </label>
+                <h4>Produit</h4>
+                <br>
+                <label for="designation_produit">Désignation du produit <br>
+                    <input type="number" id="designation_produit" name="designation_produit" placeholder="Désignation du produit">
+                </label>
+                <label for="quantite_produit" class="label-gauche">Quantité du produit <br>
+                    <input type="number" id="quantite_produit" name="quantite_produit" placeholder="Quantité du produit">
+                </label>
+                <label for="puvente_produit">Prix Unitaire du produit <br>
+                    <input type="number" id="puvente_produit" name="puvente_produit" placeholder="Prix Unitaire du produit">
+                </label>
+                
                 <label for="submit" class="label-gauche"> <br>
                     <input type="submit" id="submit" name="submit" value="Générer PDF">
                 </label>
+                <br>
             </form>
         </div>
 

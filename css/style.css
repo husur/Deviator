@@ -30,6 +30,10 @@ body{
     margin-bottom: 10px;
 }
 
+.input-hidden{
+    visibility: hidden;
+}
+
 .form-pdf form input:focus{
     color: black;
     outline: none;
@@ -76,9 +80,13 @@ input[type="submit"]:hover{
     transform: scale(1.05);
 }
 
+header{
+    z-index: 10;
+}
+
 .form-pdf{
     width: 100%;
-    height: calc(100vh - 80px - 98.44px);
+    min-height: calc(100vh - 80px - 98.44px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,6 +95,7 @@ input[type="submit"]:hover{
 main{
     width: 100%;
     min-height: calc(100vh - 80px - 98.44px);
+    z-index: 1;
 }
 
 section {
@@ -101,6 +110,7 @@ footer{
     text-align: center;
     padding: 20px;
     color: #fff;
+    z-index: 10;
 }
 
 footer h3{

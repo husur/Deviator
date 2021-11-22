@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 	$dossierimg = "../deviator/img/logo/";
 	$nom_upload = $dossierimg.$nom_fichier.".jpg";
 
-	if ($nom != "") {
+	if ($nom != "" AND $fichier != "") {
 
 		if(move_uploaded_file($fichier, $nom_upload)){
 			$insertimg = $bdd->prepare("UPDATE image_devis SET nom_fichier = ? WHERE id = 1");
@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
             echo $nom_upload;
 		}
 	}else{
-		echo "Tous les champs doivent être complétés";
 	}
 
     if($_POST['nom_entreprise'] != ""){
@@ -192,7 +191,7 @@ if($siret == ""){
             </label>
         </form>
 
-        <a href="creation_pdf_devis_vierge.php?nom=<?=$nom?>&tel=<?=$tel?>&mail=<?=$mail?>&adresse=<?=$adresse?>&complement=<?=$complement?>&cp=<?=$cp?>&ville=<?=$ville?>&pays=<?=$pays?>&siret=<?=$siret?>"><button name="devis_vierge" id="devis_vierge">Télécharger le devis vierge</button></a>
+        <a href="creation_pdf_devis_vierge.php?nom=<?=$nom?>&tel=<?=$tel?>&mail=<?=$mail?>&adresse=<?=$adresse?>&complement=<?=$complement?>&cp=<?=$cp?>&ville=<?=$ville?>&pays=<?=$pays?>&siret=<?=$siret?>&from=1"><button name="devis_vierge" id="devis_vierge">Télécharger le devis vierge</button></a>
     </div>
 
 </main>

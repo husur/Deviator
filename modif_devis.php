@@ -39,6 +39,8 @@ if (isset($_POST['submit'])) {
                                 $pays = htmlspecialchars($_POST['pays_entreprise']);
                                 if($_POST['siret_entreprise'] != ""){
                                     $siret = htmlspecialchars($_POST['siret_entreprise']);
+                                    $insertentreprise = $bdd->prepare("UPDATE image_devis SET nom_entreprise = ?, tel_entreprise = ?, adresse_entreprise = ?, complement_entreprise = ?, cp_entreprise = ?, ville_entreprise = ?, pays_entreprise = ?, mail_entreprise = ?, siret_entreprise = ? WHERE id = 1");
+                                    $insertentreprise->execute(array($nom, $tel, $adresse, $complement, $cp, $ville, $pays, $mail, $siret));
                                 }else{
                                     echo "Tous les champs doivent être copmplétés";
                                 }
@@ -127,7 +129,7 @@ if (isset($_POST['submit'])) {
                 <input type="text" name="pays_entreprise" id="pays_entreprise" placeholder="Pays">
             </label>
             <label for="mail_entreprise" class="label-gauche">Adresse Mail <br>
-                <input type="text" name="mail_entreprise" id="mail_entreprise" placeholder="SIRET">
+                <input type="text" name="mail_entreprise" id="mail_entreprise" placeholder="Adresse Mail">
             </label>
             <label for="siret_entreprise">SIRET <br>
                 <input type="text" name="siret_entreprise" id="siret_entreprise" placeholder="SIRET">

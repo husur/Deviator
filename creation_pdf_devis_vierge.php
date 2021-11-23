@@ -55,8 +55,6 @@ define('FPDF_FONTPATH','fpdf/font/');
 // initiate FPDI
 $pdf = new FPDI('P','mm','A4');
 
-define('devise',chr(128));
-
 $fichier_pdf = "pdf/devis_vierge.pdf";
 //echo $fichier_pdf;
 //echo "</br>";
@@ -86,6 +84,8 @@ $montantttc = $montantht * 1.2;
 $tva = $montantttc - $montantht;
 
 $nom_fichier = "Devis-".substr(time(),3,8);
+
+define('EURO',chr(128));
 
 for ($j=1;$j<=$pagecount;$j++){
     $tplidx = $pdf->importPage($j);
@@ -268,7 +268,7 @@ for ($j=1;$j<=$pagecount;$j++){
             $pdf->SetXY(110,140);
             $pdf->MultiCell(30,5,utf8_decode("PU Vente"),1,'C',0);
             $pdf->SetXY(110,145);
-            $pdf->MultiCell(30,10,utf8_decode($puvente),1,'C',0);
+            $pdf->MultiCell(30,10,utf8_decode($puvente." ").EURO,1,'C',0);
 
             $pdf->SetXY(140,140);
             $pdf->MultiCell(20,5,utf8_decode("TVA"),1,'C',0);
@@ -278,7 +278,7 @@ for ($j=1;$j<=$pagecount;$j++){
             $pdf->SetXY(160,140);
             $pdf->MultiCell(40,5,utf8_decode("Montant HT"),1,'C',0);
             $pdf->SetXY(160,145);
-            $pdf->MultiCell(40,10,utf8_decode($montantht),1,'C',0);
+            $pdf->MultiCell(40,10,utf8_decode($montantht." ").EURO,1,'C',0);
 
             // Tableau des totaux
             $pdf->SetXY(140,250);
@@ -286,17 +286,17 @@ for ($j=1;$j<=$pagecount;$j++){
             $pdf->SetXY(140,250);
             $pdf->MultiCell(60,5,utf8_decode("Total HT"),0,'L',0);
             $pdf->SetXY(140,250);
-            $pdf->MultiCell(60,5,utf8_decode($montantht),0,'R',0);
+            $pdf->MultiCell(60,5,utf8_decode($montantht." ").EURO,0,'R',0);
 
             $pdf->SetXY(140,255);
             $pdf->MultiCell(60,5,utf8_decode("TVA"),0,'L',0);
             $pdf->SetXY(140,255);
-            $pdf->MultiCell(60,5,utf8_decode($tva),0,'R',0);
+            $pdf->MultiCell(60,5,utf8_decode($tva." ").EURO,0,'R',0);
 
             $pdf->SetXY(140,260);
             $pdf->MultiCell(60,5,utf8_decode("Total TTC"),0,'L',0);
             $pdf->SetXY(140,260);
-            $pdf->MultiCell(60,5,utf8_decode($montantttc),0,'R',0);
+            $pdf->MultiCell(60,5,utf8_decode($montantttc." ").EURO,0,'R',0);
         }
     }                       
 }

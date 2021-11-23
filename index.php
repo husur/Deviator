@@ -62,8 +62,8 @@
                 <label for="tel">Numéro de téléphone <br>
                     <input type="number" id="tel" name="tel" placeholder="Numéro de Téléphone">
                 </label>
-                <label for="hidden" class="label-gauche input-hidden"> Test <br>
-                    <input type="text" id="hidden" name="hidden" placeholder="" class="input-hidden">
+                <label for="titre_devis" class="label-gauche">Titre du devis <br>
+                    <input type="text" id="titre_devis" name="titre_devis" placeholder="Titre du devis">
                 </label>
                 <label for="designation_produit">Désignation du produit <br>
                     <input type="text" id="designation_produit" name="designation_produit" placeholder="Désignation du produit">
@@ -113,7 +113,12 @@
                                                     $quantite = htmlspecialchars($_POST['quantite_produit']);
                                                     if($_POST['puvente_produit'] != ""){
                                                         $puvente = htmlspecialchars($_POST['puvente_produit']);
-                                                        header("Location: creation_pdf_devis_vierge.php?nom=$nom&prenom=$prenom&mail=$mail&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel&designation=$designation&quantite=$quantite&puvente=$puvente&from=0");
+                                                        if($_POST['titre_devis'] != ""){
+                                                            $titre = htmlspecialchars($_POST['titre_devis']);
+                                                            header("Location: creation_pdf_devis_vierge.php?nom=$nom&prenom=$prenom&mail=$mail&titre=$titre&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel&designation=$designation&quantite=$quantite&puvente=$puvente&from=0");
+                                                        }else{
+                                                            echo "Tous les champs doivent être complétés";
+                                                        }
                                                     }else{
                                                         echo "Tous les champs doivent être complétés";
                                                     }

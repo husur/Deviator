@@ -48,15 +48,17 @@ $pdf = $bdd->query('SELECT * FROM devis ORDER BY date_devis DESC');
         $date_explode = str_replace(":", " ", $date_explode);
 
         $date_explode = explode(" ", $date_explode);
+        $heure_explode = $date_explode;
 
         $date_explode = $date_explode[2]."/".$date_explode[1]."/".$date_explode[0];
+        $heure_explode = $heure_explode[3]."h".$heure_explode[4];
 
             
         ?>
 
             <a href="download.php?path=<?=$devis?>"><div class="container-devis">
                 <p class="text">
-                    Télécharger le devis de <?= $p['nom'] ?> <?= $p['prenom'] ?> du <?= $date_explode ?>
+                    Télécharger le devis de <?= $p['nom'] ?> <?= $p['prenom'] ?> du <?= $date_explode ?> à <?=$heure_explode?>
                 </p>
                 <img src="img/logopdf.png">
             </div></a>

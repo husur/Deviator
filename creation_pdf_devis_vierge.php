@@ -24,6 +24,7 @@ $chemin_logo = 'img/logo/'.$p['nom_fichier'].'.jpg';
 
 if($from == 0){
     $nom = $_GET['nom'];
+    $prenom = $_GET['prenom'];
     $tel = $_GET['tel'];
     $mail = $_GET['mail'];
     $adresse = $_GET['adresse'];
@@ -31,6 +32,10 @@ if($from == 0){
     $complement = $_GET['complement'];
     $ville = $_GET['ville'];
     $pays = $_GET['pays'];
+    $desingation = $_GET['designation'];
+    $quantite = $_GET['quantite'];
+    $puvente = $_GET['puvente'];
+    $titre = $_GET['titre'];
 
     $nom_entreprise = $p['nom_entreprise'];
     $tel_entreprise = $p['tel_entreprise'];
@@ -76,7 +81,11 @@ include "trad_date.php";
 
 $dateauj = $jour." ".$explode_today[2]." ".$mois." ".$explode_today[3];
 
-define("Eur", "€");
+$montantht = $puvente * $quantite;
+$montantttc = $montantht * 1.2;
+$tva = $montantttc - $montantht;
+
+$nom_fichier = "Devis-".substr(time(),3,8);
 
 for ($j=1;$j<=$pagecount;$j++){
     $tplidx = $pdf->importPage($j);
@@ -168,19 +177,46 @@ for ($j=1;$j<=$pagecount;$j++){
 
             $pdf->SetXY(10,130);
             $pdf->MultiCell(90,5,utf8_decode("Date du devis"),0,'L','L',0);
+
+            $pdf->SetXY(10,140);
+            $pdf->MultiCell(70,5,utf8_decode("Désignation"),1,'C',0);
+
+            $pdf->SetXY(80,140);
+            $pdf->MultiCell(30,5,utf8_decode("Quantité"),1,'C',0);
+
+            $pdf->SetXY(110,140);
+            $pdf->MultiCell(30,5,utf8_decode("PU Vente"),1,'C',0);
+
+            $pdf->SetXY(140,140);
+            $pdf->MultiCell(20,5,utf8_decode("TVA"),1,'C',0);
+
+            $pdf->SetXY(160,140);
+            $pdf->MultiCell(40,5,utf8_decode("Montant HT"),1,'C',0);
+
+            // Tableau des totaux
+            $pdf->SetXY(140,250);
+            $pdf->MultiCell(60,15,"",1,'L','L',0);
+            $pdf->SetXY(140,250);
+            $pdf->MultiCell(60,5,utf8_decode("Total HT"),0,'L',0);
+
+            $pdf->SetXY(140,255);
+            $pdf->MultiCell(60,5,utf8_decode("TVA"),0,'L',0);
+
+            $pdf->SetXY(140,260);
+            $pdf->MultiCell(60,5,utf8_decode("Total TTC"),0,'L',0);
         }
 
         if($from == 0){
             $pdf->SetFont('MontserratBold');
             $pdf->SetFontSize(13);
             $pdf->SetXY(100,40);
-            $pdf->MultiCell(90,5,utf8_decode("Titre de votre devis"),0,'L','L',0);
+            $pdf->MultiCell(90,5,utf8_decode($titre),0,'L','L',0);
 
             $pdf->SetFont('MontserratBold');
             $pdf->SetFontSize(11);
 
             $pdf->SetXY(130,62);
-            $pdf->MultiCell(90,5,utf8_decode($nom),0,'L','L',0);
+            $pdf->MultiCell(90,5,utf8_decode($nom." ".$prenom),0,'L','L',0);
 
             $pdf->SetFont('Montserrat');
             $pdf->SetFontSize(11);
@@ -210,7 +246,7 @@ for ($j=1;$j<=$pagecount;$j++){
             $pdf->MultiCell(90,5,utf8_decode($mail),0,'L','L',0);
 
             $pdf->SetXY(10,120);
-            $pdf->MultiCell(90,5,utf8_decode("Numéro de devis"),0,'L','L',0);
+            $pdf->MultiCell(90,5,utf8_decode($nom_fichier),0,'L','L',0);
 
             $pdf->SetFont('MontserratLight');
             $pdf->SetFontSize(10);
@@ -222,17 +258,17 @@ for ($j=1;$j<=$pagecount;$j++){
             $pdf->SetXY(10,140);
             $pdf->MultiCell(70,5,utf8_decode("Désignation"),1,'C',0);
             $pdf->SetXY(10,145);
-            $pdf->MultiCell(70,10,utf8_decode("Objet 1"),1,'C',0);
+            $pdf->MultiCell(70,10,utf8_decode($desingation),1,'C',0);
 
             $pdf->SetXY(80,140);
             $pdf->MultiCell(30,5,utf8_decode("Quantité"),1,'C',0);
             $pdf->SetXY(80,145);
-            $pdf->MultiCell(30,10,utf8_decode("2"),1,'C',0);
+            $pdf->MultiCell(30,10,utf8_decode($quantite),1,'C',0);
 
             $pdf->SetXY(110,140);
             $pdf->MultiCell(30,5,utf8_decode("PU Vente"),1,'C',0);
             $pdf->SetXY(110,145);
-            $pdf->MultiCell(30,10,utf8_decode("110"),1,'C',0);
+            $pdf->MultiCell(30,10,utf8_decode($puvente),1,'C',0);
 
             $pdf->SetXY(140,140);
             $pdf->MultiCell(20,5,utf8_decode("TVA"),1,'C',0);
@@ -242,14 +278,40 @@ for ($j=1;$j<=$pagecount;$j++){
             $pdf->SetXY(160,140);
             $pdf->MultiCell(40,5,utf8_decode("Montant HT"),1,'C',0);
             $pdf->SetXY(160,145);
-            $pdf->MultiCell(40,10,utf8_decode("110"),1,'C',0);
+            $pdf->MultiCell(40,10,utf8_decode($montantht),1,'C',0);
+
+            // Tableau des totaux
+            $pdf->SetXY(140,250);
+            $pdf->MultiCell(60,15,"",1,'L','L',0);
+            $pdf->SetXY(140,250);
+            $pdf->MultiCell(60,5,utf8_decode("Total HT"),0,'L',0);
+            $pdf->SetXY(140,250);
+            $pdf->MultiCell(60,5,utf8_decode($montantht),0,'R',0);
+
+            $pdf->SetXY(140,255);
+            $pdf->MultiCell(60,5,utf8_decode("TVA"),0,'L',0);
+            $pdf->SetXY(140,255);
+            $pdf->MultiCell(60,5,utf8_decode($tva),0,'R',0);
+
+            $pdf->SetXY(140,260);
+            $pdf->MultiCell(60,5,utf8_decode("Total TTC"),0,'L',0);
+            $pdf->SetXY(140,260);
+            $pdf->MultiCell(60,5,utf8_decode($montantttc),0,'R',0);
         }
     }                       
 }
 
 
-$fichier='pdf/devis.pdf';
-$pdf->Output($fichier,'F'); 
+
+$fichier='pdf/pdf-generer/Devis-'.substr(time(),3,8).'.pdf';
+$pdf->Output($fichier,'F');
+
+if($from == 0){
+    $date = date("Y-m-d H:i:s");
+    
+    $insertpdf = $bdd->prepare("INSERT INTO devis(nom_devis, nom, prenom, date_devis) VALUES(?, ?, ?, ?)");
+    $insertpdf->execute(array($nom_fichier, $nom, $prenom, $date));
+}
 
 $path = $fichier;
 header("Location: download.php?path=$path");

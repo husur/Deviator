@@ -35,8 +35,6 @@
 
         <div class="form-pdf">
             <form action="" method="POST">
-                <h4>Client</h4>
-                <br>
                 <label for="nom">Nom <br>
                     <input type="text" id="nom" name="nom" placeholder="Nom">
                 </label>
@@ -64,13 +62,11 @@
                 <label for="tel">Numéro de téléphone <br>
                     <input type="number" id="tel" name="tel" placeholder="Numéro de Téléphone">
                 </label>
-                <label for="tel" class="label-gauche input-hidden"> Test<br>
-                    <input type="number" id="designation_produit" name="designation_produit" placeholder="Désignation du produit" class="input-hidden">
+                <label for="hidden" class="label-gauche input-hidden"> Test <br>
+                    <input type="text" id="hidden" name="hidden" placeholder="" class="input-hidden">
                 </label>
-                <h4>Produit</h4>
-                <br>
                 <label for="designation_produit">Désignation du produit <br>
-                    <input type="number" id="designation_produit" name="designation_produit" placeholder="Désignation du produit">
+                    <input type="text" id="designation_produit" name="designation_produit" placeholder="Désignation du produit">
                 </label>
                 <label for="quantite_produit" class="label-gauche">Quantité du produit <br>
                     <input type="number" id="quantite_produit" name="quantite_produit" placeholder="Quantité du produit">
@@ -78,7 +74,6 @@
                 <label for="puvente_produit">Prix Unitaire du produit <br>
                     <input type="number" id="puvente_produit" name="puvente_produit" placeholder="Prix Unitaire du produit">
                 </label>
-                
                 <label for="submit" class="label-gauche"> <br>
                     <input type="submit" id="submit" name="submit" value="Générer PDF">
                 </label>
@@ -112,30 +107,45 @@
                                         $pays = htmlspecialchars($_POST['pays']);
                                         if($_POST['tel'] != ""){
                                             $tel = htmlspecialchars($_POST['tel']);
-                                            header("Location: creation_pdf_devis_vierge.php?nom=$nom&prenom=$prenom&mail=$mail&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel&from=0");
+                                            if($_POST['designation_produit'] != ""){
+                                                $designation = htmlspecialchars($_POST['designation_produit']);
+                                                if($_POST['quantite_produit'] != ""){
+                                                    $quantite = htmlspecialchars($_POST['quantite_produit']);
+                                                    if($_POST['puvente_produit'] != ""){
+                                                        $puvente = htmlspecialchars($_POST['puvente_produit']);
+                                                        header("Location: creation_pdf_devis_vierge.php?nom=$nom&prenom=$prenom&mail=$mail&adresse=$adresse&complement=$complement&cp=$cp&ville=$ville&pays=$pays&tel=$tel&designation=$designation&quantite=$quantite&puvente=$puvente&from=0");
+                                                    }else{
+                                                        echo "Tous les champs doivent être complétés";
+                                                    }
+                                                }else{
+                                                    echo "Tous les champs doivent être complétés";
+                                                }
+                                            }else{
+                                                echo "Tous les champs doivent être complétés";
+                                            }
                                         }else{
-                                            echo "Tous les champs doivent être copmplétés";
+                                            echo "Tous les champs doivent être complétés";
                                         }
                                     }else{
-                                        echo "Tous les champs doivent être copmplétés";
+                                        echo "Tous les champs doivent être complétés";
                                     }
                                 }else{
-                                    echo "Tous les champs doivent être copmplétés";
+                                    echo "Tous les champs doivent être complétés";
                                 }
                             }else{
-                                echo "Tous les champs doivent être copmplétés";
+                                echo "Tous les champs doivent être complétés";
                             }
                         }else{
-                            echo "Tous les champs doivent être copmplétés";
+                            echo "Tous les champs doivent être complétés";
                         }
                     }else{
-                        echo "Tous les champs doivent être copmplétés";
+                        echo "Tous les champs doivent être complétés";
                     }
                 }else{
-                    echo "Tous les champs doivent être copmplétés";
+                    echo "Tous les champs doivent être complétés";
                 }
             }else{
-                echo "Tous les champs doivent être copmplétés";
+                echo "Tous les champs doivent être complétés";
             }
         }
 

@@ -1,7 +1,7 @@
 <?php
 include "database.php";
 
-$pdf = $bdd->query('SELECT * FROM devis');
+$pdf = $bdd->query('SELECT * FROM devis ORDER BY date_devis DESC');
 
 ?>
 
